@@ -168,7 +168,6 @@ jobs:
 
 workflows:
   demo:
-    unless: << pipeline.parameters.cleanup >>
     jobs:
       - build-image:
           name: "Building Docker Image"
@@ -185,7 +184,6 @@ workflows:
           requires:
             - "Testing Docker Image"
             - "Scan image via Snyk"
-            - "Testing Python Demo Code"
       - reuse-docker-image:
           name: "Using Company Image"
           requires:
